@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mo Bands - Form</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+
+    <!-- Link to Moment.js should go here -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+
+  </head>
+
+  <body>
+        <!-- Facebook API -->
+        <script>
+          window.fbAsyncInit = function () {
+            FB.init({
+              appId: '1478871842240454',
+              cookie: true,
+              xfbml: true,
+              version: 'v2.12'
+            });
+
+
+            FB.getLoginStatus(function (response) {
+              statusChangeCallback(response);
+            });
+
+          };
+
+          (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+              return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+
+          function statusChangeCallback(response) {
+            if (response.status === 'connected') {
+              console.log('logged in and authenticated');
+              setElements(true);
+            } else {
+              console.log('not authenticated');
+            }
+          }
+
+          function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+              statusChangeCallback(response);
+            });
+          }
+
+          function setElements(isLoggedIn) {
+            if (isLoggedIn) {
+              document.getElementById('fb-btn').style.display = 'none';
+              document.getElementById('logout').style.display = 'block';
+            } else {
+              document.getElementById('fb-btn').style.display = 'block';
+              document.getElementById('logout').style.display = 'none';
+            }
+          }
+
+          function logout() {
+            FB.logout(function (response) {
+              setElements(false);
+            });
+          }
+        </script>
+        
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-silver">
+          <div class="container-fluid" class="navbar-header">
+            <p></p>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                <a class="navbar-brand" href="index.html">Mo Bands</a>
+              </li>
+              <li class="nav-item">
+                <a class="navbar-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="band_form.html">Contact Me</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="advertisement.html">Listen to Artists</a>
+            </li>
+            </ul>
+        
+        
+            <!-- Facebook Login button -->
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <fb:login-button id="fb-btn" scope="public_profile,email" onlogin="checkLoginState();">
+                </fb:login-button>
+                <a id="logout" href="#" onclick="logout()">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        
+        
+        <!-- Image Carousel -->
+        <div id="carousel_container">
+          <div>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                  <img src="./assets/images/bandLit.jpg" alt="Musicians Wanted" style="width:100%; height:500px;">
+                  <div class="carousel-caption">
+                    <h3>Tell us what you need!</h3>
+                    <p>Let our Community Help!</p>
+                  </div>
+                </div>
+              </div>
+        
+              <!-- Left and right controls -->
+              <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+    <!-- Band Form Container -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <!-- Add you band Info  -->
+          <div class="panel panel-primary">
+            <div class="panel-body">
+
+              <!-- Entry Form -->
+              <form>
+                <div class="form-group">
+                  <label for="band-name-input">Band or Artist Name</label>
+                  <input class="form-control" id="band-name-input" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="location-input">Location (State)</label>
+                  <input class="form-control" id="location-input" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="need-input">Need</label>
+                  <input class="form-control" id="need-input" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="time-input">When Do You Need It? (mm/dd/yy)</label>
+                  <input class="form-control" id="time-input" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="description-input">Description of Your Band</label>
+                  <input class="form-control" id="description-input" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="media-input">Post Your youTube Video</label>
+                    <input class="form-control" id="media-input" type="text">
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-input">Contact Me</label>
+                    <input id="emailAddress" type="email" placeholder="MyName@email.com">
+                  </div>
+                <button class="btn btn-primary" id="add-band-btn" type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script text = 'JavaScript'>
+    //First I need to initialize Firebase
+    var config = {
+            apiKey: "AIzaSyC22pg8At8rnWwjY-8HhGMlL8RSqtIO-lw",
+            authDomain: "mo-bands-mo-problems.firebaseapp.com",
+            databaseURL: "https://mo-bands-mo-problems.firebaseio.com",
+            projectId: "mo-bands-mo-problems",
+            storageBucket: "mo-bands-mo-problems.appspot.com",
+            messagingSenderId: "172100309774"
+        };
+        firebase.initializeApp(config);
+
+    var database = firebase.database();
+
+        // Next I need to add functionality to submit button on html for adding band schedules + update the database
+        $("#add-band-btn").on("click", function (event) {
+            event.preventDefault();
+
+            // Need to add variables to collect user inputs
+            var bandName = $("#band-name-input").val().trim();
+            var bandLocation = $("#location-input").val().trim();
+            var bandNeed = $("#need-input").val().trim();
+            var bandTime = moment($("#time-input").val().trim(), "MM/DD/YY").format("MM/DD/YY");
+            var bandDescription = $("#description-input").val().trim();
+            var bandMedia = $("#media-input").val().trim();
+            var bandContact = $("#emailAddress").val().trim();
+
+            // Creates local "temporary" object for holding band data
+            var newBand = {
+                name: bandName,
+                location: bandLocation,
+                need: bandNeed,
+                need_date: bandTime,
+                description: bandDescription,
+                media:bandMedia,
+                contact: bandContact
+            };
+
+            //uploads band data to the database
+            database.ref().push(newBand);
+
+            // logs everything into the console
+            console.log(newBand.name);
+            console.log(newBand.location);
+            console.log(newBand.need);
+            console.log(newBand.need_date);
+            console.log(newBand.description);
+            console.log(newBand.media);
+            console.log(newBand.contact);
+
+            //Of course you have to clear all of the text boxes
+            $("#band-name-input").val("");
+            $("#location-input").val("");
+            $("#need-input").val("");
+            $("#time-input").val("");
+            $("#description-input").val("");
+            $("#media-input").val("");
+            $("#emailAddress").val("");
+            
+
+            // 3. Create Firebase event for adding new band schedule to the firebase database and dynamically create row in html after user click submit button
+            database.ref().on("child_added", function(childSnapshot, prevChildKey) {
+
+            console.log(childSnapshot.val());
+
+            // Store everything into a variable.
+            var bandName = childSnapshot.val().name;
+            var bandLocation = childSnapshot.val().need;
+            var bandNeed = childSnapshot.val().need;
+            var bandTime = childSnapshot.val().need_date;
+            var bandDescription = childSnapshot.val().description;
+            var bandMedia = childSnapshot.val().media;
+            var bandContact = childSnapshot.val().contact;
+
+            // Band Info
+            console.log(bandName);
+            console.log(bandLocation);
+            console.log(bandNeed);
+            console.log(bandTime);
+            console.log(bandDescription);
+            console.log(bandMedia);
+            console.log(bandContact);
+
+            // Add each data into the table
+            $("#posts-table > tbody").append("<tr><td>" + bandName + "</td><td>" + bandLocation + "</td><td>" + bandNeed + "</td><td>" +
+              bandTime + "</td><td>" + bandDescription + "</td><td>" + bandMedia + "</td><td>" + bandContact + "</td></tr>");
+
+        });
+
+    });
+
+    $("#searchState").on("click", function (event){
+      console.log($("#stateInput").val());
+    })
+
+
+
+    </script>
+
+  </body>
+
+</html>
