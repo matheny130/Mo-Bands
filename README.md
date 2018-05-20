@@ -24,5 +24,5 @@ An application to match musicians with other artists and possible gigs. Users ca
 ![](/images/ad.jpg)
 
 
-
+**Credit to Amanda Gunnels, Mahdi Hamdan, and Robert Relief as the other members of the team that created this page**
 **Search by state not currently functional**
