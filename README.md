@@ -1,4 +1,5 @@
 **Mo-Bands**
+
 An application to match musicians with other artists and possible gigs. Users can place an advertisement to meet their current needs for other musicians, browse advertisements already placed to see if they are a fit for another's needs, or browse for bands available in their area.
 
 **Homepage**
